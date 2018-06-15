@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--添加配置文件-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:db.properties"/>
+    </bean>
+
+
+    <!--配置外部数据源连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="maxActive" value="100"/>
+        <property name="maxWaitThreadCount" value="20"/>
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+    </bean>
+
+    <!--配置SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--设置SqlSessionFactory数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:Mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:Mapper/*Dao.xml"/>
+    </bean>
+
+    <!--配置扫描Mapper-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.cake.dao"/>
+    </bean>
+
+    <!-- JEDIS SHARD 池配置 -->
+    <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1">
+            <list>
+                <ref bean="jedis.shardInfo.default"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!-- JEDIS连接池配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.pool.maxActive}"/>
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <property name="maxWaitMillis" value="${redis.pool.maxWait}"/>
+        <property name="testOnBorrow" value="true"/>
+    </bean>
+
+    <!-- JEDIS SHARD信息配置[START]      在此添加REDIS集群配置 -->
+    <bean id="jedis.shardInfo.default" class="redis.clients.jedis.JedisShardInfo">
+        <constructor-arg index="0" value="${redis.host}"/>
+        <constructor-arg index="1" type="int" value="${redis.port}"/>
+        <constructor-arg index="2" type="java.lang.String" value="${redis.host}"/>
+    </bean>
+
+</beans>

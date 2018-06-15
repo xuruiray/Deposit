@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//Mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--自定义类型转换器-->
+    <typeHandlers>
+        <!--<typeHandler handler="com.ppplans.mybatis.typeHandler.IntArrayTypeHandler" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+    </typeHandlers>
+
+    <!-- mapping 文件路径配置自动扫描可不配 -->
+    <mappers>
+        <!--<mapper resource="com/cake/dao/UserDao.xml"/>-->
+    </mappers>
+
+    <!--<settings>-->
+    <!---->
+    <!--</settings>-->
+
+</configuration>
