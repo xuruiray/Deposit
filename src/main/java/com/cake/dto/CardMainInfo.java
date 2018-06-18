@@ -9,7 +9,7 @@ package com.cake.dto;
  */
 public class CardMainInfo {
     private String bank;
-    private String cardNumbers;
+    private String card_numbers;
 
     public String getBank() {
         return bank;
@@ -19,20 +19,19 @@ public class CardMainInfo {
         this.bank = bank;
     }
 
-
-    public String getCardNumbers() {
-        return cardNumbers;
+    public String getCard_numbers() {
+        return card_numbers;
     }
 
-    public void setCardNumbers(String cardNumbers) {
-        this.cardNumbers = cardNumbers;
+    public void setCard_numbers(String card_numbers) {
+        this.card_numbers = card_numbers;
     }
 
     @Override
     public String toString() {
         return "CardMainInfo{" +
                 "bank='" + bank + '\'' +
-                ", cardNumbers='" + cardNumbers + '\'' +
+                ", card_numbers='" + card_numbers + '\'' +
                 '}';
     }
 }

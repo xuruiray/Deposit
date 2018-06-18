@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
 
 /**
  * Created by XuRui's Hands.
@@ -25,5 +28,24 @@ public class UserServiceImpl implements UserService {
     public UserInfo loadUserByName(String userName) throws Exception {
         return userDao.loadUserByName(userName);
     }
+
+    @Transactional
+    public boolean insertUser(String username, String password) throws Exception {
+        UserInfo userInfo = new UserInfo(username,
+                password,
+                new Timestamp(System.currentTimeMillis()),
+                new Timestamp(System.currentTimeMillis()));
+
+
+        boolean result = false;
+        try {
+            result = userDao.insertUser(userInfo) > 0;
+        } catch (SQLException e) {
+            return false;
+        }
+
+        return result;
+    }
+
 
 }

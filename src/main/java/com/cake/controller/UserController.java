@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.UUID;
+
 /**
  * Created by XuRui's Hands.
  * User:XuRui
@@ -27,8 +29,8 @@ public class UserController {
     public String Login(@RequestParam(value = "user_name", required = true) String userName,
                         @RequestParam(value = "password", required = true) String password) throws Exception{
         UserInfo userInfo = userService.loadUserByName(userName);
-        if (userInfo.getPassword() == password){
-            return "true";
+        if (userInfo.getPassword().equals(password)) {
+            return UUID.randomUUID().toString();
         }else{
             return "false";
         }
@@ -36,9 +38,9 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/register")
-    public String Register(@RequestParam(value = "user_name", required = true) int UserName,
-                           @RequestParam(value = "password", required = true) int Password) throws Exception{
-        return "hello";
+    public boolean Register(@RequestParam(value = "user_name", required = true) String userName,
+                            @RequestParam(value = "password", required = true) String password) throws Exception {
+        return userService.insertUser(userName, password);
     }
 
 }

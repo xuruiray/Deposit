@@ -1,6 +1,8 @@
 package com.cake.entity;
 
 
+import java.sql.Timestamp;
+
 public class UserInfo {
 
   private long id;
@@ -9,6 +11,20 @@ public class UserInfo {
   private java.sql.Timestamp createTime;
   private java.sql.Timestamp modifyTime;
 
+    public UserInfo(Integer id, String username, String password, Timestamp createTime, Timestamp modifyTime) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.createTime = createTime;
+        this.modifyTime = modifyTime;
+    }
+
+    public UserInfo(String username, String password, Timestamp createTime, Timestamp modifyTime) {
+        this.username = username;
+        this.password = password;
+        this.createTime = createTime;
+        this.modifyTime = modifyTime;
+    }
 
   public long getId() {
     return id;

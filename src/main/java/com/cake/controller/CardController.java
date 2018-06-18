@@ -3,8 +3,8 @@ package com.cake.controller;
 import com.cake.dto.CardMainInfo;
 import com.cake.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Time:23:05
  * Email:971661949@qq.com
  */
+
+@Controller
+@RequestMapping("/card")
 public class CardController {
 
     @Autowired
@@ -21,7 +24,7 @@ public class CardController {
 
     @ResponseBody
     @RequestMapping("/getCardInfo")
-    public CardMainInfo Register(@RequestParam(value = "amount", required = true) int amount) throws Exception{
+    public CardMainInfo loadCardRandom() throws Exception {
         return cardService.loadCardRandom();
     }
 }

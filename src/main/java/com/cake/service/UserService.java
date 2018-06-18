@@ -9,5 +9,7 @@ import com.cake.entity.UserInfo;
  * Time:21:36
  */
 public interface UserService {
-   public UserInfo loadUserByName(String userName) throws Exception;
+    UserInfo loadUserByName(String userName) throws Exception;
+
+    boolean insertUser(String username, String password) throws Exception;
 }
