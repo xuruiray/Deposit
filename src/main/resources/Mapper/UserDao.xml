@@ -4,16 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cake.dao.UserDao">
-    <select id="loadAllUser" resultType="com.cake.entity.User">
-        SELECT * FROM user
+    <select id="loadUserByName" resultType="com.cake.entity.UserInfo" parameterType="java.lang.String">
+        SELECT * FROM user_info WHERE user_name=#{userName}
     </select>
-
-    <select id="loadUserById" resultType="com.cake.entity.User" parameterType="java.lang.Integer">
-        SELECT * FROM user WHERE user_id=#{userId}
-    </select>
-
-    <delete id="deleteUserById" parameterType="java.lang.Integer">
-        DELETE FROM user where userId=#{userId}
-    </delete>
-
 </mapper>

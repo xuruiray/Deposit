@@ -1,13 +1,12 @@
 package com.cake.controller;
 
-import com.cake.entity.User;
+import com.cake.entity.UserInfo;
 import com.cake.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.util.List;
 
 /**
  * Created by XuRui's Hands.
@@ -20,35 +19,26 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    UserController() {
-        System.out.println("初始化 demo 控制器");
-    }
-
     @Autowired
     private UserService userService;
 
+    @ResponseBody
+    @RequestMapping("/login")
+    public String Login(@RequestParam(value = "user_name", required = true) String userName,
+                        @RequestParam(value = "password", required = true) String password) throws Exception{
+        UserInfo userInfo = userService.loadUserByName(userName);
+        if (userInfo.getPassword() == password){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
 
     @ResponseBody
-    @RequestMapping("/hello")
-    public String Hello() {
+    @RequestMapping("/register")
+    public String Register(@RequestParam(value = "user_name", required = true) int UserName,
+                           @RequestParam(value = "password", required = true) int Password) throws Exception{
         return "hello";
     }
 
-    @ResponseBody
-    @RequestMapping("/requestIn")
-    public int RequestIn(@RequestParam(value = "sign", required = false, defaultValue = "") int sign) {
-        return sign;
-    }
-
-    @ResponseBody
-    @RequestMapping("/loadAllUser")
-    public List<User> LoadAllUser() {
-        List<User> list = null;
-        try {
-            list = userService.loadAllUser();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
 }

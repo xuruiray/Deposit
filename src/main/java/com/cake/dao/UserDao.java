@@ -1,8 +1,6 @@
 package com.cake.dao;
 
-import com.cake.entity.User;
-
-import java.util.List;
+import com.cake.entity.UserInfo;
 
 /**
  * Created by XuRui's Hands.
@@ -11,9 +9,5 @@ import java.util.List;
  * Time:16:15
  */
 public interface UserDao {
-    List<User> loadAllUser() throws Exception;
-
-    User loadUserById(int userId) throws Exception;
-
-    void deleteUserById(int userId) throws Exception;
+    UserInfo loadUserByName(String userName) throws Exception;
 }

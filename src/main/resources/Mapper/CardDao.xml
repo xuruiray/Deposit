@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//Mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cake.dao.CardDao">
+    <select id="loadCardRandom" resultType="com.cake.entity.CardMainInfo">
+        select bank,card_numbers from card_info order by rand() limit 1;
+    </select>
+</mapper>

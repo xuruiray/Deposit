@@ -1,8 +1,9 @@
 package com.cake.service.impl;
 
-import com.cake.dao.UserDao;
-import com.cake.entity.UserInfo;
-import com.cake.service.UserService;
+import com.cake.dao.CardDao;
+import com.cake.dto.CardMainInfo;
+import com.cake.entity.CardInfo;
+import com.cake.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,14 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Service
-public class UserServiceImpl implements UserService {
+public class CardServiceImpl implements CardService {
 
     @Autowired
-    private UserDao userDao;
+    private CardDao cardDao;
 
     @Transactional
-    public UserInfo loadUserByName(String userName) throws Exception {
-        return userDao.loadUserByName(userName);
+    public CardMainInfo loadCardRandom() throws Exception {
+        return cardDao.loadCardRandom();
     }
 
 }
