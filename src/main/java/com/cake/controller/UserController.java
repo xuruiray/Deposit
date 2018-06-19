@@ -3,10 +3,13 @@ package com.cake.controller;
 import com.cake.entity.UserInfo;
 import com.cake.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import redis.clients.jedis.ShardedJedis;
+import redis.clients.jedis.ShardedJedisPool;
 
 import java.util.UUID;
 
@@ -23,14 +26,23 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ShardedJedisPool jedisPool;
 
     @ResponseBody
     @RequestMapping("/login")
     public String Login(@RequestParam(value = "user_name", required = true) String userName,
                         @RequestParam(value = "password", required = true) String password) throws Exception{
         UserInfo userInfo = userService.loadUserByName(userName);
+        String uuid = UUID.randomUUID().toString();
+
+        ShardedJedis jedis = jedisPool.getResource();
+        jedis.set(uuid, "1");
+        jedis.expire(uuid, 300);
+        jedis.close();
+
         if (userInfo.getPassword().equals(password)) {
-            return UUID.randomUUID().toString();
+            return uuid;
         }else{
             return "false";
         }
@@ -38,9 +50,17 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/register")
-    public boolean Register(@RequestParam(value = "user_name", required = true) String userName,
-                            @RequestParam(value = "password", required = true) String password) throws Exception {
-        return userService.insertUser(userName, password);
+    public String Register(@RequestParam(value = "user_name", required = true) String userName,
+                           @RequestParam(value = "password", required = true) String password) throws Exception {
+        try {
+            if (userService.insertUser(userName, password)) {
+                return "succeed";
+            } else {
+                return "failed";
+            }
+        } catch (DuplicateKeyException e) {
+            return "duplicate user_name";
+        }
     }
 
 }

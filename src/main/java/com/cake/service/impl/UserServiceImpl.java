@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
 import java.sql.Timestamp;
 
 
@@ -35,16 +34,7 @@ public class UserServiceImpl implements UserService {
                 password,
                 new Timestamp(System.currentTimeMillis()),
                 new Timestamp(System.currentTimeMillis()));
-
-
-        boolean result = false;
-        try {
-            result = userDao.insertUser(userInfo) > 0;
-        } catch (SQLException e) {
-            return false;
-        }
-
-        return result;
+        return userDao.insertUser(userInfo) > 0;
     }
 
 
