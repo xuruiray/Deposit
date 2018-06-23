@@ -1,6 +1,5 @@
 package com.cake.service;
 
-
 import com.cake.dto.CardMainInfo;
 
 /**
@@ -10,5 +9,5 @@ import com.cake.dto.CardMainInfo;
  * Time:21:36
  */
 public interface CardService {
-    public CardMainInfo loadCardRandom() throws Exception;
+    CardMainInfo loadCardRandom() throws Exception;
 }

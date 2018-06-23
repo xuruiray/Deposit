@@ -2,12 +2,10 @@ package com.cake.service.impl;
 
 import com.cake.dao.CardDao;
 import com.cake.dto.CardMainInfo;
-import com.cake.entity.CardInfo;
 import com.cake.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 /**
  * Created by XuRui's Hands.

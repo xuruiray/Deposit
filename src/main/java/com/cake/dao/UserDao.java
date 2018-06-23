@@ -10,6 +10,5 @@ import com.cake.entity.UserInfo;
  */
 public interface UserDao {
     UserInfo loadUserByName(String userName) throws Exception;
-
     int insertUser(UserInfo userInfo) throws Exception;
 }

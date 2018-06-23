@@ -42,9 +42,9 @@ public class UserController {
         jedis.close();
 
         if (userInfo.getPassword().equals(password)) {
-            return uuid;
+            return "{\"session_id\":\"" + uuid + "\"}";
         }else{
-            return "false";
+            return "{\"msg\":\"" + "false" + "\"}";
         }
     }
 
@@ -55,12 +55,12 @@ public class UserController {
                            @RequestParam(value = "identity_card", required = true) String identityCard) throws Exception {
         try {
             if (userService.insertUser(userName, password, identityCard)) {
-                return "succeed";
+                return "{\"msg\":\"" + "succeed" + "\"}";
             } else {
-                return "failed";
+                return "{\"msg\":\"" + "failed" + "\"}";
             }
         } catch (DuplicateKeyException e) {
-            return "duplicate user_name";
+            return "{\"msg\":\"" + "duplicate user_name" + "\"}";
         }
     }
 
