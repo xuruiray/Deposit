@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
@@ -31,7 +33,8 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/login")
-    public String Login(@RequestParam(value = "user_name", required = true) String userName,
+    public String Login(HttpServletResponse response,
+                        @RequestParam(value = "user_name", required = true) String userName,
                         @RequestParam(value = "password", required = true) String password) throws Exception{
         UserInfo userInfo = userService.loadUserByName(userName);
         String uuid = UUID.randomUUID().toString();
@@ -42,7 +45,11 @@ public class UserController {
         jedis.close();
 
         if (userInfo.getPassword().equals(password)) {
-            return "{\"session_id\":\"" + uuid + "\"}";
+            Cookie cookie = new Cookie("session_id", uuid);
+            cookie.setMaxAge(30 * 60);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            return "{\"msg\":\"" + "true" + "\"}";
         }else{
             return "{\"msg\":\"" + "false" + "\"}";
         }

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by XuRui's Hands.
  * User:XuRui
@@ -29,9 +32,22 @@ public class CardController {
 
     @ResponseBody
     @RequestMapping("/getCardInfo")
-    public CardMainInfo loadCardRandom(@RequestParam(value = "card_id", required = true) String cardID,
-                                       @RequestParam(value = "amount", required = true) String amount,
-                                       @RequestParam(value = "session_id", required = true) String sessionID) throws Exception {
+    public CardMainInfo loadCardRandom(HttpServletRequest request,
+                                       @RequestParam(value = "card_id", required = true) String cardID,
+                                       @RequestParam(value = "amount", required = true) String amount) throws Exception {
+
+        String sessionID = "";
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return null;
+        }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("session_id")) {
+                sessionID = cookie.getValue();
+            }
+            break;
+        }
+
         ShardedJedis jedis = jedisPool.getResource();
         String result = jedis.get(sessionID);
 
