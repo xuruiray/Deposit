@@ -29,15 +29,15 @@ public class CardController {
 
     @ResponseBody
     @RequestMapping("/getCardInfo")
-    public CardMainInfo loadCardRandom(@RequestParam(value = "session_id", required = true) String sessionID) throws Exception {
+    public CardMainInfo loadCardRandom(@RequestParam(value = "card_id", required = true) String cardID,
+                                       @RequestParam(value = "amount", required = true) String amount,
+                                       @RequestParam(value = "session_id", required = true) String sessionID) throws Exception {
         ShardedJedis jedis = jedisPool.getResource();
         String result = jedis.get(sessionID);
-        jedis.close();
 
-        if (result.equals("1")) {
+        if (result != null) {
             return cardService.loadCardRandom();
         } else {
-            //TODO 跳转登录页面
             return null;
         }
     }

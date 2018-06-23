@@ -9,6 +9,6 @@
     </select>
 
     <insert id="insertUser" parameterType="com.cake.entity.UserInfo">
-        insert into user_info(user_name,password,create_time,modify_time) values (#{username},#{password},#{createTime},#{modifyTime})
+        insert into user_info(user_name,password,identity_card,create_time,modify_time) values (#{username},#{password},#{identityCard},#{createTime},#{modifyTime})
     </insert>
 </mapper>

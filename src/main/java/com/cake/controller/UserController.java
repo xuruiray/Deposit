@@ -51,9 +51,10 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/register")
     public String Register(@RequestParam(value = "user_name", required = true) String userName,
-                           @RequestParam(value = "password", required = true) String password) throws Exception {
+                           @RequestParam(value = "password", required = true) String password,
+                           @RequestParam(value = "identity_card", required = true) String identityCard) throws Exception {
         try {
-            if (userService.insertUser(userName, password)) {
+            if (userService.insertUser(userName, password, identityCard)) {
                 return "succeed";
             } else {
                 return "failed";

@@ -8,22 +8,31 @@ public class UserInfo {
   private long id;
   private String username;
   private String password;
+  private String identityCard;
   private java.sql.Timestamp createTime;
   private java.sql.Timestamp modifyTime;
 
-    public UserInfo(Integer id, String username, String password, Timestamp createTime, Timestamp modifyTime) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.createTime = createTime;
-        this.modifyTime = modifyTime;
-    }
+  public UserInfo(Integer id, String username, String password, String identityCard, Timestamp createTime, Timestamp modifyTime) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.identityCard = identityCard;
+    this.createTime = createTime;
+    this.modifyTime = modifyTime;
+  }
 
-    public UserInfo(String username, String password, Timestamp createTime, Timestamp modifyTime) {
-        this.username = username;
-        this.password = password;
-        this.createTime = createTime;
-        this.modifyTime = modifyTime;
+  public UserInfo(String username, String password, String identityCard) {
+    this.username = username;
+    this.password = password;
+    this.identityCard = identityCard;
+  }
+
+  public UserInfo(String username, String password, String identityCard, Timestamp createTime, Timestamp modifyTime) {
+    this.username = username;
+    this.password = password;
+    this.identityCard = identityCard;
+    this.createTime = createTime;
+    this.modifyTime = modifyTime;
     }
 
   public long getId() {

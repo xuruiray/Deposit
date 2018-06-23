@@ -29,9 +29,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public boolean insertUser(String username, String password) throws Exception {
+    public boolean insertUser(String username, String password, String identityCard) throws Exception {
         UserInfo userInfo = new UserInfo(username,
                 password,
+                identityCard,
                 new Timestamp(System.currentTimeMillis()),
                 new Timestamp(System.currentTimeMillis()));
         return userDao.insertUser(userInfo) > 0;

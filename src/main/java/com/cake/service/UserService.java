@@ -11,5 +11,5 @@ import com.cake.entity.UserInfo;
 public interface UserService {
     UserInfo loadUserByName(String userName) throws Exception;
 
-    boolean insertUser(String username, String password) throws Exception;
+    boolean insertUser(String username, String password, String identityCard) throws Exception;
 }
