@@ -1,0 +1,42 @@
+h3.bankTitle {
+    line-height: 2;
+    display: block;
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: #719f3e;
+    text-align: center;
+}
+
+div#cardInfo {
+    padding: 70px 0;
+}
+
+table#cardTable {
+    display: inline-block;
+    width: 560px;
+}
+
+tr {
+    width: 560px;
+    display: inline-block;
+}
+
+tr#titleTr {
+    margin-bottom: 20px;
+}
+
+tr th {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+    line-height: 1;
+    color: rgb(239, 149, 7);
+}
+
+tr td {
+    width: 49%;
+    text-align: center;
+    line-height: 1.6;
+    display: inline-block;
+    vertical-align: middle;
+}

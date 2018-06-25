@@ -1,0 +1,49 @@
+登录页面
+
+	http://58.87.89.234/user/login
+	请求参数 POST
+		user_name
+		password
+	返回值
+		{"session_id":"faeaa6fe-682b-4dc8-baa0-6377e2dc9930"}
+		登陆后跳转至银行卡页面
+		
+		登录失败
+		false
+	
+注册页面
+
+	http://58.87.89.234/user/register
+	请求参数 POST
+		user_name			用户名
+		password			密码
+		identity_card		身份证号
+	返回值
+		{message:succeed}  			//注册成功
+		failed				//注册失败
+		duplicate user_name	//用户名重复
+		跳转至登录页面
+		
+	
+银行卡页面
+
+	http://58.87.89.234/card/getCardInfo
+	请求参数 POST
+		card_id				用户银行卡号
+		amount				金额
+	返回值
+		{
+			"bank": "中国银行",
+			"card_numbers": "12314141245123"
+		}
+		当前页面直接显示这两个数据
+		
+		若session_id过期返回空字符串
+		跳转至登录页面
+		
+		
+备注
+	账号 英文数字下划线 不能以数字开头	
+	密码 6-12 数字字母
+	
+	

@@ -1,0 +1,29 @@
+ul.tabs li {
+    float: left;
+    width: 280px;
+    text-align: center;
+}
+
+ul.tabs li a {
+    line-height: 2;
+    display: block;
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: black;
+}
+
+.tabs-active {
+    border-bottom: 1px solid #87c048;
+}
+
+.tabs-active a {
+    color: #719f3e !important;
+}
+
+img.visible {
+    position: absolute;
+    width: 22px;
+    height: 20px;
+    right: 6px;
+    top: 5px;
+}

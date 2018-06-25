@@ -1,5 +1,82 @@
+<!DOCTYPE html>
 <html>
+<head>
+	<meta charset="utf-8"/>
+	<title>login</title>
+	<link rel="stylesheet" href="/css/common.css"/>
+	<link rel="stylesheet" href="/css/login.css"/>
+</head>
 <body>
-Hello World!
+<div class="loginBG">
+	<div class="loginCard">
+		<ul class="tabs clearfix"><!--tab切换菜单-->
+			<li class="tabs-active"><a href="#tab1">登录</a></li>
+			<li><a href="#tab2">注册</a></li>
+		</ul>
+		<div class="tab_container"><!--内容区域-->
+			<div id="tab1" class="tab_content" style="display: block; ">
+				<form action="#" id="loginForm" class="infoForm">
+					<dl>
+						<dt>用户名：</dt>
+						<dd><input type="text" placeholder="字母、数字、下划线" id="loginUsn" pattern="^([a-zA-z_]{1})([\w]*)$"
+								   oninvalid="(this.value=='') ? this.setCustomValidity('用户名不能为空!') : this.setCustomValidity('用户名必须是字母数字下划线，且开头不能是数字!');"
+								   oninput="setCustomValidity('')" required="required"/></dd>
+					</dl>
+					<dl>
+						<dt>密码：</dt>
+						<dd style="position: relative;">
+							<input type="password" placeholder="6-12位字母数字组合" id="loginPsw" class="psw" pattern="\d{6}"
+								   oninvalid="(this.value=='') ? this.setCustomValidity('密码不能为空!') : this.setCustomValidity('密码格式错误!');"
+								   oninput="setCustomValidity('')" required="required"/>
+							<img src="images/visible.png" class="visible" onclick="showPsw('loginPsw')"/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>登录：</dt>
+						<dd>
+							<input type="submit" value="登录" id="loginBtn" class="submitBtn"/>
+						</dd>
+					</dl>
+				</form>
+			</div>
+			<div id="tab2" class="tab_content" style="display: none; ">
+				<form action="#" id="registerForm" class="infoForm">
+					<dl>
+						<dt>用户名：</dt>
+						<dd><input type="text" placeholder="字母、数字、下划线" id="registerUsn"
+								   pattern="^([a-zA-z_]{1})([\w]*)$"
+								   oninvalid="(this.value=='') ? this.setCustomValidity('用户名不能为空!') : this.setCustomValidity('用户名必须是字母数字下划线，且开头不能是数字!');"
+								   oninput="setCustomValidity('')" required="required"/></dd>
+					</dl>
+					<dl>
+						<dt>密码：</dt>
+						<dd style="position: relative;">
+							<input type="password" placeholder="6-12位字母数字组合" id="registerPsw" class="psw"
+								   pattern="^[a-zA-Z0-9]{6,12}$"
+								   oninvalid="(this.value=='') ? this.setCustomValidity('密码不能为空!') : this.setCustomValidity('密码格式错误!');"
+								   oninput="setCustomValidity('')" required="required"/>
+							<img src="images/visible.png" class="visible" onclick="showPsw('registerPsw')"/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>身份证号：</dt>
+						<dd>
+							<input type="text" placeholder="15或18位" id="idNum"
+								   pattern="(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)"
+								   oninvalid="(this.value=='') ? this.setCustomValidity('身份证号不能为空!') : this.setCustomValidity('身份证号格式错误！');"
+								   oninput="setCustomValidity('')" onchange="checkPassword()" required="required"/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>注册：</dt>
+						<dd><input type="submit" value="注册" id="registerBtn" class="submitBtn"/></dd>
+					</dl>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/login.js"></script>
 </body>
 </html>

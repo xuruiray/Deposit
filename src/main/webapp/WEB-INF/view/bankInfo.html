@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>bankInfo</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/bankInfo.css"/>
+</head>
+<body>
+<div class="bankBG">
+    <div class="bankInfo">
+        <h3 class="bankTitle">银行卡信息</h3>
+        <div id="inputInfo">
+            <form action="#" id="cardForm">
+                <dl>
+                    <dt>银行卡号：</dt><!--15位或者19位-->
+                    <dd><input type="text" placeholder="请输入银行卡号" id="cardId" pattern="^([1-9]{1})(\d{14}|\d{18})$"
+                               oninvalid="(this.value=='') ? this.setCustomValidity('银行卡号不能为空!') : this.setCustomValidity('银行卡号格式错误！');"
+                               oninput="setCustomValidity('')" required="required"/></dd>
+                </dl>
+                <dl>
+                    <dt>金额：</dt><!--大于0的整数-->
+                    <dd><input type="text" placeholder="请输入金额" id="amount" pattern="^\+?[1-9]\d*$"
+                               oninvalid="(this.value=='') ? this.setCustomValidity('金额不能为空!') : this.setCustomValidity('金额必须是大于0的整数!');"
+                               oninput="setCustomValidity('')" required="required"/></dd>
+                </dl>
+                <dl>
+                    <dt>确定：</dt>
+                    <dd>
+                        <input type="submit" value="确定" class="submitBtn"/>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <div id="cardInfo" style="display: none;">
+            <table id="cardTable">
+                <tr id="titleTr">
+                    <th>名称</th>
+                    <th>卡号</th>
+                </tr>
+                <tr>
+                    <td id="bankName"></td>
+                    <td id="cardNum"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bankInfo.js"></script>
+</body>
+</html>
