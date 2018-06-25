@@ -27,7 +27,7 @@ oLoginForm.on("submit", function (ev) {
     var loginUsn = oLoginUsn.val();
     var loginPsw = oLoginPsw.val();
     $.ajax({
-        url: "http://58.87.89.234/user/login",
+        url: "http://210.209.89.206/user/login",
         type: "post",
         dataType: "json",//必须要写数据类型，否则报错
         data: {
@@ -62,7 +62,7 @@ oRegForm.on("submit", function (ev) {
     var regPsw = oRegPsw.val();
     var regId = oId.val();
     $.ajax({
-        url: "http://localhost:8080/user/register",
+        url: "http://210.209.89.206/user/register",
         type: "post",
         dataType: "json",//必须要写数据类型，否则报错
         data: {
