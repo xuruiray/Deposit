@@ -30,6 +30,12 @@ public class CardController {
     @Autowired
     private ShardedJedisPool jedisPool;
 
+
+    @RequestMapping("/deposit")
+    public String Deposit() {
+        return "bankInfo";
+    }
+
     @ResponseBody
     @RequestMapping("/getCardInfo")
     public CardMainInfo loadCardRandom(HttpServletRequest request,
