@@ -72,16 +72,16 @@ oRegForm.on("submit", function (ev) {
         },
         success: function (result) {
             var result = eval(result);
-            if (result.message == "succeed") {//注册成功
+            if (result.msg == "succeed") {//注册成功
                 alert("注册成功，请重新登录！");
                 window.location.href = "login.html";
                 return;
             }
-            if (result.message == "failed") {
+            if (result.msg == "failed") {
                 alert("注册失败！");
                 return;
             }
-            if (result.message == "duplicate user_name") {
+            if (result.msg == "duplicate user_name") {
                 alert("用户名重复，请重新注册！");
                 oRegUsn.val("");//清空输入框
                 oRegPsw.val("");
