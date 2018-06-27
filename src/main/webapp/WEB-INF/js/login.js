@@ -73,8 +73,8 @@ oRegForm.on("submit", function (ev) {
         success: function (result) {
             var result = eval(result);
             if (result.msg == "succeed") {//注册成功
-                alert("注册成功，请重新登录！");
-                window.location.href = "login.html";
+                alert("注册成功，请登录！");
+                window.location.href = "";
                 return;
             }
             if (result.msg == "failed") {
