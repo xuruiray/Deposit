@@ -56,7 +56,7 @@ public class CardController {
 
         ShardedJedis jedis = jedisPool.getResource();
         String result = jedis.get(sessionID);
-
+        jedis.close();
         if (result != null) {
             return cardService.loadCardRandom();
         } else {
