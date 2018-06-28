@@ -19,9 +19,9 @@
 					<dl>
 						<dt>用户名：</dt>
 						<dd><input type="text" placeholder="字母、数字、下划线" id="loginUsn"
-								   pattern="(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)"
-								   oninvalid="(this.value=='') ? this.setCustomValidity('用户名不能为空!') : this.setCustomValidity('用户名必须是字母数字下划线，且开头不能是数字!');"
-								   oninput="setCustomValidity('')" required="required"/></dd>
+                                   pattern="^([a-zA-z_]{1})([\w]*)$"
+                                   oninvalid="(this.value=='') ? this.setCustomValidity('用户名不能为空!') : this.setCustomValidity('用户名必须是字母数字下划线，且开头不能是数字!');"
+                                   oninput="setCustomValidity('')" required="required"/></dd>
 					</dl>
 					<dl>
 						<dt>密码：</dt>
