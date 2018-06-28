@@ -18,7 +18,7 @@ oCardForm.on("submit", function (ev) {
             $("#cardInfo").css("display", "block");
             var result = eval(result);
             if (result.bank == "") {//未登录
-                window.location.href = "";
+                window.location.href = "/";
                 return;
             }
             $("#bankName").html(result.bank);
