@@ -38,9 +38,9 @@ public class CardController {
 
     @ResponseBody
     @RequestMapping("/getCardInfo")
-    public CardMainInfo loadCardRandom(HttpServletRequest request,
-                                       @RequestParam(value = "card_id", required = true) String cardID,
-                                       @RequestParam(value = "amount", required = true) String amount) throws Exception {
+    public String loadCardRandom(HttpServletRequest request,
+                                 @RequestParam(value = "card_id", required = true) String cardID,
+                                 @RequestParam(value = "amount", required = true) String amount) throws Exception {
 
         String sessionID = "";
         Cookie[] cookies = request.getCookies();
@@ -58,9 +58,10 @@ public class CardController {
         String result = jedis.get(sessionID);
         jedis.close();
         if (result != null) {
-            return cardService.loadCardRandom();
+            CardMainInfo cardMainInfo = cardService.loadCardRandom();
+            return "{\"bank\": \"" + cardMainInfo.getBank() + "\",\"card_numbers\": \"" + cardMainInfo.getCard_numbers() + "\"}";
         } else {
-            return null;
+            return "{\"bank\": \"\",\"card_numbers\": \"\"}";
         }
     }
 }
