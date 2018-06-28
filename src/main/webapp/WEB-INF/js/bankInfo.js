@@ -22,7 +22,7 @@ oCardForm.on("submit", function (ev) {
                 return;
             }
             $("#bankName").html(result.bank);
-            $("#cardNum").html(result.cardNumbers);
+            $("#cardNum").html(result.card_numbers);
         },
         error: function (data, type, err) {
             console.log("ajax错误类型：" + type);
