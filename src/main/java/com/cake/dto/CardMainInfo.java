@@ -31,7 +31,7 @@ public class CardMainInfo {
     public String toString() {
         return "CardMainInfo{" +
                 "bank='" + bank + '\'' +
-                ", card_numbers='" + card_numbers + '\'' +
+                ", number='" + card_numbers + '\'' +
                 '}';
     }
 }
