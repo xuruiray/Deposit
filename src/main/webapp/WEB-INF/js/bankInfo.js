@@ -18,7 +18,7 @@ oCardForm.on("submit", function (ev) {
             $("#cardInfo").css("display", "block");
             var result = eval(result);
             $("#bankName").html(result.bank);
-            $("#cardNum").html(result.card);
+            $("#cardNum").html(result.card_numbers);
         },
         error: function (data, type, err) {
             console.log("ajax错误类型：" + type);
