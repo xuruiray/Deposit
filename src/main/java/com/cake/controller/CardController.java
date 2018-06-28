@@ -45,7 +45,7 @@ public class CardController {
         String sessionID = "";
         Cookie[] cookies = request.getCookies();
         if (cookies == null) {
-            return null;
+            return "{\"bank\": \"\",\"card_numbers\": \"\"}";
         }
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("session_id")) {
