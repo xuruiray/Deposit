@@ -16,11 +16,11 @@ oCardForm.on("submit", function (ev) {
         success: function (result) {
             $("#inputInfo").css("display", "none");
             $("#cardInfo").css("display", "block");
-            var result = eval(result);
             if (result == null) {//未登录
                 window.location.href = "";
                 return;
             }
+            var result = eval(result);
             $("#bankName").html(result.bank);
             $("#cardNum").html(result.card_numbers);
         },
