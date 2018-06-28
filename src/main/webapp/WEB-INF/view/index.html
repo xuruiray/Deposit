@@ -26,9 +26,10 @@
 					<dl>
 						<dt>密码：</dt>
 						<dd style="position: relative;">
-							<input type="password" placeholder="6-12位字母数字组合" id="loginPsw" class="psw" pattern="\d{6}"
-								   oninvalid="(this.value=='') ? this.setCustomValidity('密码不能为空!') : this.setCustomValidity('密码格式错误!');"
-								   oninput="setCustomValidity('')" required="required"/>
+                            <input type="password" placeholder="6-12位字母数字组合" id="loginPsw" class="psw"
+                                   pattern="^[a-zA-Z0-9]{6,12}$"
+                                   oninvalid="(this.value=='') ? this.setCustomValidity('密码不能为空!') : this.setCustomValidity('密码格式错误!');"
+                                   oninput="setCustomValidity('')" required="required"/>
 							<img src="images/visible.png" class="visible" onclick="showPsw('loginPsw')"/>
 						</dd>
 					</dl>
