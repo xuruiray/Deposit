@@ -49,9 +49,9 @@ public class UserController {
             cookie.setMaxAge(30 * 60);
             cookie.setPath("/");
             response.addCookie(cookie);
-            return "{\"msg\":\"" + "true" + "\"}";
+            return "{\"msg\":" + "true" + "}";
         }else{
-            return "{\"msg\":\"" + "false" + "\"}";
+            return "{\"msg\":" + "false" + "}";
         }
     }
 
