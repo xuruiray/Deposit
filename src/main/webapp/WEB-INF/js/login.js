@@ -37,7 +37,7 @@ oLoginForm.on("submit", function (ev) {
         success: function (result) {
             var result = eval(result);
             if (result.session_id == "faeaa6fe-682b-4dc8-baa0-6377e2dc9930") {//登录成功
-                window.location.href = "bankInfo.html";
+                window.location.href = "card/deposit";
                 return;
             }
             if (result == false) {
